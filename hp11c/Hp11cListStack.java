@@ -42,7 +42,7 @@ class Hp11cListStack<T> {
     }
     
     /**
-     * Grabs a copy of the stack as an Array List
+     * Grabs all of the stack elements as an Array List
      * @return ArrayList of all stack elements
      */
     public ArrayList<T> popAll() {

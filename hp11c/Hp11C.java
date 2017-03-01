@@ -23,6 +23,7 @@ public class Hp11C {
     private ArrayList engineStack = new ArrayList();
     private float currentNumber = 0;
     
+    
     private boolean decimalInputMode = false;
 
 
@@ -51,19 +52,6 @@ public class Hp11C {
                     decimalInputMode = true;
                     decimalStackInsert(currentNumber);
                     
-                    
-                   /* stack.push(currentNumber);
-                    
-                    float one = stack.pop();
-                    float two = stack.pop();
-                    
-                    int i1 = (int) two;
-                    int i2 = (int) one;
-                    String t = i1 + "." + i2;
-                    
-                    float result = new Float(t);
-                    
-                    currentNumber = result; */
                 } else {
                     System.out.println("ignored");
                 }
@@ -89,6 +77,8 @@ public class Hp11C {
                     Then two numbers are popped, the operation is carried out. 
                     The result is pushed back onto the stack
                 */
+                
+                // TODO: Pushing currentnumber is not necessary! Fix this dummy!
                 stack.push(currentNumber);
                 
                 float one = stack.pop();
@@ -216,7 +206,8 @@ public class Hp11C {
     }
     
     /**
-     * Using the decimalStack, build the float number to be used.
+     * Pops all the elements of decimal stack and boils them down to a
+     * float containing all of them.
      * @return the float to be used.
      */
     float decimalStackCalculation() {
@@ -224,9 +215,14 @@ public class Hp11C {
         ArrayList<String> list = decimalStack.popAll();
         Collections.reverse(list); // Reverse this to make it easier to work with.
         
-        String result = list.get(0) + ".";
+        // Get the first element and give it
+        // a "." point, then remove it from the list.
+        String result = list.get(0) + "."; 
         list.remove(list.get(0));
         
+        
+        // Append the rest of the numbers behind the
+        // "." and return it as a float.
         for (int i = 0; i < list.size(); i++) {
             result += "" + list.get(i);
         }
