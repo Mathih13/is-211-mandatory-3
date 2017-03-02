@@ -59,7 +59,10 @@ public class Hp11C {
 
             @Override
             public void chsPressed() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                float v = stack.pop();
+                v *= -1;
+                stack.push(v);
+                currentNumber = v;
             }
 
             @Override
